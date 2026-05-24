@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Diagnostic Form — Skope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #0d0f1a;
+      color: #e0e0e0;
+    }
+
+    main {
+      min-height: calc(100vh - 200px);
+      padding: 4rem 2rem 2rem;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.08), rgba(79, 142, 247, 0.03));
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      border-radius: 12px;
+    }
+
+    .form-section {
+      margin-bottom: 2rem;
+    }
+
+    .form-section.hidden {
+      display: none;
+    }
+
+    .form-section h2 {
+      font-family: 'Sora', sans-serif;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .question-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .question-group label {
+      display: block;
+      color: #e0e0e0;
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .question-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(79, 142, 247, 0.3);
+      border-radius: 8px;
+      background-color: rgba(13, 15, 26, 0.9);
+      color: #e0e0e0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .question-group textarea::placeholder {
+      color: #606070;
+    }
+
+    .question-group textarea:focus {
+      outline: none;
+      border-color: #4f8ef7;
+      box-shadow: 0 0 12px rgba(79, 142, 247, 0.25);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    button {
+      padding: 0.85rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background-color: #4f8ef7;
+      color: #0d0f1a;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: #3a7de0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(79, 142, 247, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #4f8ef7;
+      border: 2px solid #4f8ef7;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: rgba(79, 142, 247, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .loading {
+      text-align: center;
+      color: #a0a0a0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(79, 142, 247, 0.2);
+      border-top-color: #4f8ef7;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error {
+      color: #ff6b6b;
+      padding: 1rem;
+      background-color: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .error.hidden {
+      display: none;
+    }
+
+    .success {
+      color: #51cf66;
+      padding: 1rem;
+      background-color: rgba(81, 207, 102, 0.1);
+      border: 1px solid rgba(81, 207, 102, 0.3);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1rem 1rem;
+      }
+
+      .form-container {
+        margin: 1rem 0;
+        padding: 1.5rem;
+      }
+
+      .form-section h2 {
+        font-size: 1.4rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation (matching landing page) -->
+  <nav>
+    <div class="logo">Skope</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="form.html">Diagnostic</a>
+    </div>
+  </nav>
+
+  <main class="form-container">
+    <!-- Phase 1 -->
+    <div id="phase1" class="form-section">
+      <h2>Tell us about yourself</h2>
+      <div id="phase1-error" class="error hidden"></div>
+
+      <div class="question-group">
+        <label for="q1">What's your stream/subjects? (e.g., PCM with Computer Science)</label>
+        <textarea id="q1" placeholder="Share your academic background..."></textarea>
+      </div>
+
+      <div class="question-group">
+        <label for="q2">What are your hobbies and interests?</label>
+        <textarea id="q2" placeholder="Tell us what you love to do..."></textarea>
+      </div>
+
+      <div class="question-group">
+        <label for="q3">What are your initial career thoughts?</label>
+        <textarea id="q3" placeholder="Any ideas or uncertainties about your future?"></textarea>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-primary" id="btn-phase1">Get Adaptive Questions</button>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div id="phase2" class="form-section hidden">
+      <h2>Deeper Dive</h2>
+      <div id="phase2-error" class="error hidden"></div>
+      <div id="phase2-loading" class="loading hidden">
+        <div class="spinner"></div> Generating personalized questions...
+      </div>
+
+      <div id="phase2-questions"></div>
+
+      <div class="button-group">
+        <button class="btn-secondary" id="btn-back">← Back</button>
+        <button class="btn-primary" id="btn-phase2">Generate Your Report</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

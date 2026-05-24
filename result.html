@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your PathReport — Skope</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #0d0f1a;
+      color: #e0e0e0;
+    }
+
+    main {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .report-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Key Insight Card */
+    .insight-card {
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.15), rgba(79, 142, 247, 0.08));
+      border: 2px solid #4f8ef7;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .insight-card h3 {
+      color: #4f8ef7;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .insight-card p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    /* Profile Summary */
+    .summary-box {
+      background: rgba(79, 142, 247, 0.08);
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Two Column Grid */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .column-box h4 {
+      color: #4f8ef7;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .column-box ul {
+      list-style: none;
+    }
+
+    .column-box li {
+      padding: 0.6rem 0;
+      color: #a0a0a0;
+      border-bottom: 1px solid rgba(79, 142, 247, 0.1);
+    }
+
+    .column-box li:last-child {
+      border-bottom: none;
+    }
+
+    /* Career Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.08), rgba(79, 142, 247, 0.03));
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(79, 142, 247, 0.5);
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.12), rgba(79, 142, 247, 0.06));
+    }
+
+    .card h3 {
+      color: #4f8ef7;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      color: #a0a0a0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: #707070;
+    }
+
+    /* College Table */
+    .college-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+
+    .college-table th {
+      background: rgba(79, 142, 247, 0.1);
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #4f8ef7;
+      border-bottom: 2px solid rgba(79, 142, 247, 0.3);
+    }
+
+    .college-table td {
+      padding: 0.9rem;
+      border-bottom: 1px solid rgba(79, 142, 247, 0.1);
+      color: #e0e0e0;
+    }
+
+    .college-table tr:hover {
+      background: rgba(79, 142, 247, 0.05);
+    }
+
+    .difficulty-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .difficulty-badge.reach {
+      background: rgba(255, 107, 107, 0.2);
+      color: #ff6b6b;
+    }
+
+    .difficulty-badge.target {
+      background: rgba(79, 142, 247, 0.2);
+      color: #4f8ef7;
+    }
+
+    .difficulty-badge.safe {
+      background: rgba(81, 207, 102, 0.2);
+      color: #51cf66;
+    }
+
+    /* Action List */
+    .action-list {
+      list-style: none;
+    }
+
+    .action-list li {
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: rgba(79, 142, 247, 0.08);
+      border-left: 4px solid #4f8ef7;
+      border-radius: 4px;
+      color: #e0e0e0;
+    }
+
+    /* Chat Section */
+    #chat-section {
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.08), rgba(79, 142, 247, 0.03));
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    #chat-messages {
+      height: 400px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(13, 15, 26, 0.8);
+      border-radius: 8px;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-bubble {
+      max-width: 70%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      word-wrap: break-word;
+    }
+
+    .message.assistant .message-bubble {
+      background: rgba(79, 142, 247, 0.2);
+      color: #e0e0e0;
+      border-left: 3px solid #4f8ef7;
+    }
+
+    .message.user .message-bubble {
+      background: #4f8ef7;
+      color: #0d0f1a;
+    }
+
+    .chat-chips {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      background: rgba(79, 142, 247, 0.2);
+      color: #4f8ef7;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(79, 142, 247, 0.3);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .chip:hover {
+      background: rgba(79, 142, 247, 0.3);
+      border-color: #4f8ef7;
+    }
+
+    .chat-input-group {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(79, 142, 247, 0.3);
+      background: rgba(13, 15, 26, 0.8);
+      color: #e0e0e0;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    #chat-input:focus {
+      outline: none;
+      border-color: #4f8ef7;
+      box-shadow: 0 0 10px rgba(79, 142, 247, 0.2);
+    }
+
+    #chat-btn {
+      padding: 0.75rem 1.5rem;
+      background: #4f8ef7;
+      color: #0d0f1a;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    #chat-btn:hover {
+      background: #3a7de0;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 1.5rem 1rem;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #chat-messages {
+        height: 300px;
+      }
+
+      .message-bubble {
+        max-width: 85%;
+      }
+
+      .college-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Skope</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="form.html">Diagnostic</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Key Insight -->
+    <div class="report-section">
+      <div class="insight-card">
+        <h3>🎯 Your Key Insight</h3>
+        <p id="key-insight">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Profile Summary -->
+    <div class="report-section">
+      <h2 class="section-title">Your Profile</h2>
+      <div class="summary-box" id="profile-summary">Loading...</div>
+    </div>
+
+    <!-- Strengths & Gaps -->
+    <div class="report-section">
+      <h2 class="section-title">Strengths & Gaps</h2>
+      <div class="two-column">
+        <div class="column-box">
+          <h4>💪 Strengths</h4>
+          <ul id="strengths-list"></ul>
+        </div>
+        <div class="column-box">
+          <h4>🔧 Gaps to Work On</h4>
+          <ul id="gaps-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Careers -->
+    <div class="report-section">
+      <h2 class="section-title">Recommended Careers</h2>
+      <div class="cards-grid" id="careers-grid"></div>
+    </div>
+
+    <!-- Colleges -->
+    <div class="report-section">
+      <h2 class="section-title">Top Colleges for You</h2>
+      <table class="college-table">
+        <thead>
+          <tr>
+            <th>College</th>
+            <th>City</th>
+            <th>Type</th>
+            <th>Entrance Exam</th>
+            <th>Why It Fits</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <tbody id="colleges-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Emerging Roles -->
+    <div class="report-section">
+      <h2 class="section-title">Emerging Roles to Watch</h2>
+      <div class="cards-grid" id="emerging-roles-grid"></div>
+    </div>
+
+    <!-- Next 30 Days -->
+    <div class="report-section">
+      <h2 class="section-title">Your Next 30 Days</h2>
+      <ul class="action-list" id="action-list"></ul>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chat-section">
+      <h2 class="section-title">💬 Ask Your Counsellor</h2>
+      <div id="chat-messages"></div>
+
+      <div class="chat-chips" id="chat-chips"></div>
+
+      <div class="chat-input-group">
+        <input type="text" id="chat-input" placeholder="Ask a question about your career path...">
+        <button id="chat-btn">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

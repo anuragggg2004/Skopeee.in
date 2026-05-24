@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Skope — Find Your Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #0d0f1a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: rgba(13, 15, 26, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(79, 142, 247, 0.1);
+    }
+
+    .logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4f8ef7;
+    }
+
+    nav a {
+      color: #a0a0a0;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      color: #4f8ef7;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #0d0f1a 0%, #1a1f3a 100%);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+    }
+
+    .hero .highlight {
+      color: #4f8ef7;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #a0a0a0;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background-color: #4f8ef7;
+      color: #0d0f1a;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid #4f8ef7;
+    }
+
+    .cta-button:hover {
+      background-color: transparent;
+      color: #4f8ef7;
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 5rem 2rem;
+      background-color: #0d0f1a;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      color: #fff;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step {
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.1), rgba(79, 142, 247, 0.05));
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(79, 142, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .step:hover {
+      border-color: rgba(79, 142, 247, 0.5);
+      background: linear-gradient(135deg, rgba(79, 142, 247, 0.15), rgba(79, 142, 247, 0.1));
+      transform: translateY(-5px);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: #4f8ef7;
+      color: #0d0f1a;
+      border-radius: 50%;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .step p {
+      color: #a0a0a0;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      background-color: rgba(13, 15, 26, 0.95);
+      border-top: 1px solid rgba(79, 142, 247, 0.1);
+      color: #707070;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer a {
+      color: #4f8ef7;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .steps-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Skope</div>
+    <div>
+      <a href="#how-it-works">How It Works</a>
+      <a href="form.html">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>
+      Iske aage <span class="highlight">scope</span> hai kya?<br>
+      <span class="highlight">Find out.</span>
+    </h1>
+    <p>Get AI-powered career guidance tailored to your strengths, interests, and goals. Discover your perfect path through college and beyond.</p>
+    <a href="form.html" class="cta-button">Start Your Journey</a>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Answer Phase 1</h3>
+        <p>Tell us about your stream, interests, and initial career thoughts. Quick questions to understand your baseline.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Get Adaptive Questions</h3>
+        <p>AI generates 5 personalized follow-up questions based on your answers. Dig deeper into your ambitions.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Receive PathReport</h3>
+        <p>Get a detailed report with career recommendations, top colleges, entrance exams, and realistic earning ranges.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Chat With Counsellor</h3>
+        <p>Ask follow-up questions and refine your path with our AI career counsellor. Get real-time guidance anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Skope. Your future starts here.</p>
+    <p>Built for Indian Class 12 students exploring their paths.</p>
+  </footer>
+</body>
+</html>
